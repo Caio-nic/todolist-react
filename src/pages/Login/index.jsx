@@ -13,7 +13,7 @@ const Login = () => {
   const [emailError, setEmailError] = useState("");
 
   const navigate = useNavigate();
-  
+
   const isValidEmail = (email) => {
     const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
     return emailRegex.test(email);
@@ -23,29 +23,28 @@ const Login = () => {
     return name.trim() !== "";
   };
 
-  const goToHome = () => {    
+  const handleClick = () => {
     if (!isValidName(name)) {
       setNameError("Please enter a valid name.");
     } else {
       setNameError("");
       navigate("/Home");
     }
-    
+
     if (!isValidEmail(email)) {
       setEmailError("Please enter a valid email address.");
     } else {
       setEmailError("");
       navigate("/Home");
     }
-  
   };
 
   return (
     <div className={styles.container}>
-      <Card 
-        titleCard={'QuickTasks'} 
-        subTitle={'Identifique-se para prosseguir'} 
-        identification 
+      <Card
+        titleCard={"QuickTasks"}
+        subTitle={"Identifique-se para prosseguir"}
+        identification
         className={styles.container}
       >
         <TextField
@@ -55,9 +54,9 @@ const Login = () => {
           onChange={(e) => setName(e.target.value)}
         />
         {nameError && <p className={styles.errorText}>{nameError}</p>}
-        
+
         <p className={styles.orText}>Or</p>
-        
+
         <TextField
           type={email}
           placeholder="Email"
@@ -65,11 +64,8 @@ const Login = () => {
           onChange={(e) => setEmail(e.target.value)}
         />
         {emailError && <p className={styles.errorText}>{emailError}</p>}
-        
-        <Button 
-          titleButton="Entrar" 
-          onClick={goToHome} 
-        />
+
+        <Button titleButton="Entrar" onClick={handleClick} />
       </Card>
     </div>
   );
