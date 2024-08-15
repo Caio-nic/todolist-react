@@ -1,40 +1,41 @@
-/* Estilo básico do botão */
 .container {
   display: inline-block;
-  width: 200px;
-  padding: 5px 10px;
-  font-size: 16px;
+  width: 150px; 
+  padding: 15px 20px; 
   font-weight: 600;
   text-align: center;
-  text-decoration: none;
   color: #ffffff;
-  background-color: #007bff; /* Azul padrão */
+  background-color: #f33219; 
   border: none;
   border-radius: 50px;
   cursor: pointer;
   transition: background-color 0.3s, transform 0.2s;
+  margin-top: 20px;
+  margin-bottom: 20px;
 }
 
-/* Estilo do botão ao passar o mouse */
+
 .container:hover,
 .container:focus {
-  background-color: #0056b3; /* Azul mais escuro */
+  background-color: #b62c1a; 
   outline: none;
 }
 
-/* Estilo do botão ao ser clicado */
 .container:active {
   transform: scale(0.98);
 }
 
-/* Estilo adicional para botões desativados */
 .container:disabled {
-  background-color: #b0bec5; /* Azul claro para desativado */
+  background-color: #f07f70;
   cursor: not-allowed;
   opacity: 0.6;
 }
 
 .title {
-  color: white;
-  font-weight: 500;
+  font-size: 20px;
+  margin: 0;
+  padding: 0;
 }
+
+
+

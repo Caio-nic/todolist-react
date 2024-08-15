@@ -1,14 +1,28 @@
 import React from "react";
 import styles from "../styles/Card.module.css";
-
-export const Card = ({ title, children }) => {
+// duvida, é função do card renderizar o second block ou onde ele for apliado
+export const Card = ({ titleCard, subTitle, children, identification = false }) => {
   return (
     <div className={styles.cardLogin}>
-      <div className={styles.cardHeader}>
-        <p className={styles.title}>{title}</p>
-        {children}
+    {identification ? (
+      <div>
+        <div className={styles.firstBlock}>
+        </div> 
+        <div className={styles.secondBlock} >
+          <p className={styles.title}>{titleCard}</p>
+          <p className={styles.subTitle}>{subTitle}</p>
+          {children}
+        </div>
       </div>
-    </div>
+    ) : (
+        <div className={styles.cardHeader}>
+           {titleCard}
+           {subTitle}
+          {children}
+        </div>
+    )}
+  </div>
+  
   );
 };
 
