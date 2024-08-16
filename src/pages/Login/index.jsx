@@ -4,7 +4,7 @@ import { useNavigate } from "react-router-dom";
 import Button from "../../components/Button";
 import TextField from "../../components/TextField";
 import styles from "../../styles/login.module.css";
-import Card from "../../components/Card";
+import FormsCard from "../../components/FormsCard";
 
 const Login = () => {
   const [email, setEmail] = useState("");
@@ -41,7 +41,7 @@ const Login = () => {
 
   return (
     <div className={styles.container}>
-      <Card
+      <FormsCard
         titleCard={"QuickTasks"}
         subTitle={"Identifique-se para prosseguir"}
         identification
@@ -66,7 +66,7 @@ const Login = () => {
         {emailError && <p className={styles.errorText}>{emailError}</p>}
 
         <Button titleButton="Entrar" onClick={handleClick} />
-      </Card>
+      </FormsCard>
     </div>
   );
 };

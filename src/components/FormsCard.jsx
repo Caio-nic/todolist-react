@@ -1,7 +1,7 @@
 import React from "react";
-import styles from "../styles/Card.module.css";
+import styles from "../styles/FormsCard.module.css";
 // duvida, é função do card renderizar o second block ou onde ele for apliado
-export const Card = ({ titleCard, subTitle, children, identification = false }) => {
+export const FormsCard = ({ titleCard, subTitle, children, identification = false }) => {
   return (
     <div className={styles.cardLogin}>
     {identification ? (
@@ -26,4 +26,4 @@ export const Card = ({ titleCard, subTitle, children, identification = false }) 
   );
 };
 
-export default Card;
+export default FormsCard;
