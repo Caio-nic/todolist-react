@@ -1,18 +1,23 @@
 // Sidebar.js
-import React from 'react';
-import styles from '../styles/Sidebar.module.css';
+import React from "react";
+import styles from "../styles/Sidebar.module.css";
+import { useAuth } from "../context/AuthContext";
+import profileImage from "../assets/images/profile.png";
 
 const Sidebar = () => {
+  const { user } = useAuth();
+
   return (
     <div className={styles.sidebar}>
       <div className={styles.profile}>
-        <img src="https://via.placeholder.com/100" alt="Profile" className={styles.profilePic} />
-        <h2 className={styles.profileName}>Name</h2>
+        <img src={profileImage} alt="Profile" className={styles.profilePic} />
+        <h2 className={styles.profileName}>{user.name}</h2>
+        <h2 className={styles.profileName}>{user.email}</h2>
       </div>
       <div className={styles.menuSection}>
         <h3 className={styles.sectionTitle}>Tasks</h3>
         <div className={styles.menuItem}>
-          <p href="#tarefas">All</p>
+          <p href="">All</p>
         </div>
         <div className={styles.menuItem}>
           <p>ToDo</p>
@@ -23,13 +28,11 @@ const Sidebar = () => {
         <div className={styles.menuItem}>
           <p>Done</p>
         </div>
-        
-        
       </div>
       <div className={styles.menuSection}>
         <h3 className={styles.sectionTitle}>Configurações</h3>
         <div className={styles.menuItem}>
-          <a href="#relatorios">Sair</a>
+          <a href="./">Sair</a>
         </div>
       </div>
     </div>

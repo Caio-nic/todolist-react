@@ -1,16 +1,15 @@
-import React, { useState } from 'react';
+import React, { useState } from "react";
 import styles from "../styles/TaskCard.module.css";
-  
-
-
+import TextField from "../components/TextField";
+import Button from "../components/Button";
 const TaskCard = ({ title, initialTasks = [], canAddTask = false }) => {
   const [tasks, setTasks] = useState(initialTasks);
-  const [newTask, setNewTask] = useState('');
+  const [newTask, setNewTask] = useState("");
 
   const handleAddTask = () => {
     if (newTask.trim()) {
       setTasks([...tasks, newTask.trim()]);
-      setNewTask('');
+      setNewTask("");
     }
   };
 
@@ -34,16 +33,13 @@ const TaskCard = ({ title, initialTasks = [], canAddTask = false }) => {
       </div>
       {canAddTask && (
         <div className={styles.addTaskContainer}>
-          <input
+          <TextField
             type="text"
-            value={newTask}
-            onChange={handleInputChange}
             placeholder="Enter new task"
-            className={styles.taskInput}
+            onChange={handleInputChange}
+            value={newTask}
           />
-          <button onClick={handleAddTask} className={styles.addButton}>
-            Add
-          </button>
+          <Button onClick={handleAddTask} titleButton="Add" />
         </div>
       )}
     </div>
@@ -51,4 +47,3 @@ const TaskCard = ({ title, initialTasks = [], canAddTask = false }) => {
 };
 
 export default TaskCard;
-

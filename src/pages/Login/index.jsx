@@ -5,6 +5,7 @@ import Button from "../../components/Button";
 import TextField from "../../components/TextField";
 import styles from "../../styles/login.module.css";
 import FormsCard from "../../components/FormsCard";
+import { useAuth } from "../../context/AuthContext";
 
 const Login = () => {
   const [email, setEmail] = useState("");
@@ -12,6 +13,7 @@ const Login = () => {
   const [nameError, setNameError] = useState("");
   const [emailError, setEmailError] = useState("");
 
+  const { setUser } = useAuth();
   const navigate = useNavigate();
 
   const isValidEmail = (email) => {
@@ -37,6 +39,7 @@ const Login = () => {
       setEmailError("");
       navigate("/Home");
     }
+    setUser({ name, email });
   };
 
   return (
