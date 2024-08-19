@@ -30,9 +30,9 @@ const Sidebar = () => {
         </div>
       </div>
       <div className={styles.menuSection}>
-        <h3 className={styles.sectionTitle}>Configurações</h3>
+        <h3 className={styles.sectionTitle}>Configuration</h3>
         <div className={styles.menuItem}>
-          <a href="./">Sair</a>
+          <a href="./">Logout</a>
         </div>
       </div>
     </div>

@@ -1,5 +1,4 @@
-import React from "react";
-import { useState } from "react";
+import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import Button from "../../components/Button";
 import TextField from "../../components/TextField";
@@ -16,31 +15,31 @@ const Login = () => {
   const { setUser } = useAuth();
   const navigate = useNavigate();
 
-  const isValidEmail = (email) => {
-    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-    return emailRegex.test(email);
-  };
-
-  const isValidName = (name) => {
-    return name.trim() !== "";
-  };
+  const isValidEmail = (email) => /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
+  const isValidName = (name) => name.trim() !== "";
 
   const handleClick = () => {
-    if (!isValidName(name)) {
+    let valid = true;
+    setNameError("");
+    setEmailError("");
+
+    if (name && !isValidName(name)) {
       setNameError("Please enter a valid name.");
-    } else {
-      setNameError("");
-      navigate("/Home");
+      valid = false;
     }
 
-    if (!isValidEmail(email)) {
+    if (email && !isValidEmail(email)) {
       setEmailError("Please enter a valid email address.");
-    } else {
-      setEmailError("");
+      valid = false;
+    }
+
+    if (valid && (isValidName(name) || isValidEmail(email))) {
+      setUser({ name, email });
       navigate("/Home");
     }
-    setUser({ name, email });
   };
+
+  const isSubmitEnabled = isValidName(name) || isValidEmail(email);
 
   return (
     <div className={styles.container}>
@@ -48,27 +47,32 @@ const Login = () => {
         titleCard={"QuickTasks"}
         subTitle={"Identifique-se para prosseguir"}
         identification
-        className={styles.container}
       >
         <TextField
           type="text"
           placeholder="Name"
           value={name}
           onChange={(e) => setName(e.target.value)}
+          aria-label="Name"
         />
         {nameError && <p className={styles.errorText}>{nameError}</p>}
 
         <p className={styles.orText}>Or</p>
 
         <TextField
-          type={email}
+          type="email"
           placeholder="Email"
           value={email}
           onChange={(e) => setEmail(e.target.value)}
+          aria-label="Email"
         />
         {emailError && <p className={styles.errorText}>{emailError}</p>}
 
-        <Button titleButton="Entrar" onClick={handleClick} />
+        <Button 
+          titleButton="Entrar" 
+          onClick={handleClick}
+          disabled={!isSubmitEnabled}
+        />
       </FormsCard>
     </div>
   );

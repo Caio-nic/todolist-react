@@ -40,6 +40,7 @@
   border-right: 3px dotted red;
   padding: 50px;
   box-sizing: border-box;
+  background-size: contain;
 }
 
 .secondBlock {
@@ -68,6 +69,6 @@
   font-size: 18px;
   color: gray;
   margin: 0;
-  text-align: left; /* Garante que o texto está alinhado à esquerda */
+  text-align: left; 
   padding: 10px;
 }
