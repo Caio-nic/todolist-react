@@ -11,7 +11,7 @@ const TaskManager = () => {
   const addTask = (task, status) => {
     setTasks((prevTasks) => ({
       ...prevTasks,
-      [status]: [...prevTasks[status], task],
+      [status]: [...prevTasks.todo, task],
     }));
   };
 
