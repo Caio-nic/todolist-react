@@ -1,5 +1,5 @@
-// Sidebar.js
 import React from "react";
+import { Link } from "react-router-dom";
 import styles from "../styles/Sidebar.module.css";
 import { useAuth } from "../context/AuthContext";
 import profileImage from "../assets/images/profile.png";
@@ -17,22 +17,22 @@ const Sidebar = () => {
       <div className={styles.menuSection}>
         <h3 className={styles.sectionTitle}>Tasks</h3>
         <div className={styles.menuItem}>
-          <p href="">All</p>
+          <Link to="/home">Home</Link>
         </div>
         <div className={styles.menuItem}>
-          <p>ToDo</p>
+          <Link to="/todo">ToDo</Link>
         </div>
         <div className={styles.menuItem}>
-          <p>Working</p>
+          <Link to="/working">Working</Link>
         </div>
         <div className={styles.menuItem}>
-          <p>Done</p>
+          <Link to="/done">Done</Link>
         </div>
       </div>
       <div className={styles.menuSection}>
         <h3 className={styles.sectionTitle}>Configuration</h3>
         <div className={styles.menuItem}>
-          <a href="./">Logout</a>
+          <Link to="/logout">Logout</Link>
         </div>
       </div>
     </div>

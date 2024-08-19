@@ -1,7 +1,7 @@
-import React, { useState } from 'react';
-import styles from '../styles/TaskCard.module.css';
-import TextField from '../components/TextField';
-import Button from '../components/Button';
+import React, { useState } from "react";
+import styles from "../styles/TaskCard.module.css";
+import TextField from "../components/TextField";
+import Button from "../components/Button";
 
 const TaskCard = ({
   title,
@@ -9,19 +9,19 @@ const TaskCard = ({
   canAddTask = false,
   onAddTask,
   onStartTask,
-  onCompleteTask
+  onCompleteTask,
 }) => {
   const [newTask, setNewTask] = useState("");
 
   const handleAddTask = () => {
-    if (newTask.trim()) {
+    if (newTask.trim() && onAddTask) {
       onAddTask(newTask.trim());
       setNewTask("");
     }
   };
 
-  const handleInputChange = (event) => {
-    setNewTask(event.target.value);
+  const handleInputChange = (e) => {
+    setNewTask(e.target.value);
   };
 
   const titleClass = title.toLowerCase();
@@ -32,28 +32,31 @@ const TaskCard = ({
       <div className={styles.tasks}>
         {tasks.length > 0 ? (
           tasks.map((task, index) => (
-            <div key={index} className={styles.task}>
-              {task}
-              {title === "Todo" && (
-                <Button
-                  onClick={() => onStartTask(index)}
-                  titleButton="Start"
-                  className={styles.startButton}
-                />
-              )}
-              {title === "Working" && (
-                <Button
-                  onClick={() => onCompleteTask(index)}
-                  titleButton="Complete"
-                  className={styles.completeButton}
-                />
-              )}
+            <div key={index} className={styles.taskContainer}>
+              <div className={styles.task}>{task}</div>
+              <div className={styles.taskActions}>
+                {title === "Todo" && onStartTask && (
+                  <Button
+                    onClick={() => onStartTask(index)}
+                    titleButton="Start"
+                    className={styles.startButton}
+                  />
+                )}
+                {title === "Working" && onCompleteTask && (
+                  <Button
+                    onClick={() => onCompleteTask(index)}
+                    titleButton="Complete"
+                    className={styles.completeButton}
+                  />
+                )}
+              </div>
             </div>
           ))
         ) : (
-          <div className={styles.noTasks}>No tasks available</div>
+          <p>No tasks available</p>
         )}
       </div>
+
       {canAddTask && title !== "Done" && (
         <div className={styles.addTaskContainer}>
           <TextField
@@ -63,7 +66,11 @@ const TaskCard = ({
             value={newTask}
             className={styles.taskInput}
           />
-          <Button onClick={handleAddTask} titleButton="Add" className={styles.addButton} />
+          <Button
+            onClick={handleAddTask}
+            titleButton="Add"
+            className={styles.addButton}
+          />
         </div>
       )}
     </div>

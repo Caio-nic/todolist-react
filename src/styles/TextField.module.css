@@ -8,10 +8,10 @@
   border-radius: 80px;
   box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
   font-size: 16px;
-  outline: none; 
+  outline: none;
 }
 
-.textField:focus {
+.container:focus {
   border-color: #f33219;
   box-shadow: 0 0 0 2px rgba(243, 50, 25, 0.2);
 }

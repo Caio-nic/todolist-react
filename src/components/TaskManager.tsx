@@ -1,5 +1,5 @@
-import React, { useState } from 'react';
-import TaskCard from './TaskCard';
+import React, { useState } from "react";
+import TaskCard from "./TaskCard";
 
 const TaskManager = () => {
   const [tasks, setTasks] = useState({
@@ -9,7 +9,7 @@ const TaskManager = () => {
   });
 
   const addTask = (task, status) => {
-    setTasks(prevTasks => ({
+    setTasks((prevTasks) => ({
       ...prevTasks,
       [status]: [...prevTasks[status], task],
     }));
@@ -17,7 +17,7 @@ const TaskManager = () => {
 
   const startTask = (index) => {
     const task = tasks.todo[index];
-    setTasks(prevTasks => {
+    setTasks((prevTasks) => {
       const newTodo = prevTasks.todo.filter((_, i) => i !== index);
       return {
         ...prevTasks,
@@ -29,7 +29,7 @@ const TaskManager = () => {
 
   const completeTask = (index) => {
     const task = tasks.working[index];
-    setTasks(prevTasks => {
+    setTasks((prevTasks) => {
       const newWorking = prevTasks.working.filter((_, i) => i !== index);
       return {
         ...prevTasks,
@@ -40,25 +40,31 @@ const TaskManager = () => {
   };
 
   return (
-    <div>
+    <>
       <TaskCard
-              title="Todo"
-              tasks={tasks.todo}
-              canAddTask={true}
-              onAddTask={(task) => addTask(task, 'todo')}
-              onStartTask={startTask} onCompleteTask={undefined}      />
+        title="Todo"
+        tasks={tasks.todo}
+        canAddTask={true}
+        onAddTask={(task) => addTask(task, "todo")}
+        onStartTask={startTask}
+        onCompleteTask={undefined}
+      />
       <TaskCard
-              title="Working"
-              tasks={tasks.working}
-              onCompleteTask={(index) => completeTask(index)} onAddTask={undefined} onStartTask={undefined}      />
+        title="Working"
+        tasks={tasks.working}
+        onCompleteTask={completeTask}
+        onAddTask={undefined}
+        onStartTask={undefined}
+      />
       <TaskCard
-              title="Done"
-              tasks={tasks.done} onAddTask={undefined} onStartTask={undefined} onCompleteTask={undefined}      />
-    </div>
+        title="Done"
+        tasks={tasks.done}
+        onAddTask={undefined}
+        onStartTask={undefined}
+        onCompleteTask={undefined}
+      />
+    </>
   );
 };
 
 export default TaskManager;
-
-
-

@@ -1,3 +1,4 @@
+// src/pages/Login.js
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import Button from "../../components/Button";
@@ -12,7 +13,7 @@ const Login = () => {
   const [nameError, setNameError] = useState("");
   const [emailError, setEmailError] = useState("");
 
-  const { setUser } = useAuth();
+  const { login } = useAuth();
   const navigate = useNavigate();
 
   const isValidEmail = (email) => /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
@@ -22,6 +23,12 @@ const Login = () => {
     let valid = true;
     setNameError("");
     setEmailError("");
+
+    if (!isValidName(name) && !isValidEmail(email)) {
+      setNameError("Please enter either a valid name or email address.");
+      setEmailError("Please enter either a valid name or email address.");
+      valid = false;
+    }
 
     if (name && !isValidName(name)) {
       setNameError("Please enter a valid name.");
@@ -33,9 +40,9 @@ const Login = () => {
       valid = false;
     }
 
-    if (valid && (isValidName(name) || isValidEmail(email))) {
-      setUser({ name, email });
-      navigate("/Home");
+    if (valid) {
+      login({ name, email });
+      navigate("/home");
     }
   };
 
@@ -45,7 +52,7 @@ const Login = () => {
     <div className={styles.container}>
       <FormsCard
         titleCard={"QuickTasks"}
-        subTitle={"Identifique-se para prosseguir"}
+        subTitle={"Identify Yourself"}
         identification
       >
         <TextField
@@ -68,8 +75,8 @@ const Login = () => {
         />
         {emailError && <p className={styles.errorText}>{emailError}</p>}
 
-        <Button 
-          titleButton="Entrar" 
+        <Button
+          titleButton="Login"
           onClick={handleClick}
           disabled={!isSubmitEnabled}
         />
