@@ -41,10 +41,7 @@ const Home = () => {
             tasks={workingTasks}
             onCompleteTask={completeTask}
           />
-          <TaskCard
-            title="Done"
-            tasks={doneTasks}
-          />
+          <TaskCard title="Done" tasks={doneTasks} />
         </div>
       </div>
     </div>

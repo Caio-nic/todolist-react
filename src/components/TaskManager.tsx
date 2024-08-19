@@ -39,6 +39,9 @@ const TaskManager = () => {
     });
   };
 
+  const editTask = () => {};
+
+  const deleteTask = () => {};
   return (
     <>
       <TaskCard
